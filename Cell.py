@@ -12,9 +12,6 @@ class Cell:
     def get_y_cord(self):
         return self.position[1]
 
-    def add_cage(self, cage_id):
-        self.cage_id = cage_id
-
     def add_value(self, value):
         if self.value == value:
             return

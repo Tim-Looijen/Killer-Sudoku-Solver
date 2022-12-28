@@ -1,8 +1,9 @@
-from Global_Imports import *
+from global_imports import *
 from Puzzle import Puzzle
 from Data import Data
-from Cell import Cell
-from Cage import Cage
+from strings import *
+
+
 
 
 def main():
