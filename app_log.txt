@@ -1,0 +1,182 @@
+
+-----------------------------------------------------------------------------------------------
+   new run at: 2022-12-29 20:36:38
+-----------------------------------------------------------------------------------------------
+: added cell: Cell: (1, 1) Cage: -1
+: added cell: Cell: (1, 2) Cage: -1
+: added cell: Cell: (1, 3) Cage: -1
+: added cell: Cell: (1, 4) Cage: -1
+: added cell: Cell: (1, 5) Cage: -1
+: added cell: Cell: (1, 6) Cage: -1
+: added cell: Cell: (1, 7) Cage: -1
+: added cell: Cell: (1, 8) Cage: -1
+: added cell: Cell: (1, 9) Cage: -1
+: added cell: Cell: (2, 1) Cage: -1
+: added cell: Cell: (2, 2) Cage: -1
+: added cell: Cell: (2, 3) Cage: -1
+: added cell: Cell: (2, 4) Cage: -1
+: added cell: Cell: (2, 5) Cage: -1
+: added cell: Cell: (2, 6) Cage: -1
+: added cell: Cell: (2, 7) Cage: -1
+: added cell: Cell: (2, 8) Cage: -1
+: added cell: Cell: (2, 9) Cage: -1
+: added cell: Cell: (3, 1) Cage: -1
+: added cell: Cell: (3, 2) Cage: -1
+: added cell: Cell: (3, 3) Cage: -1
+: added cell: Cell: (3, 4) Cage: -1
+: added cell: Cell: (3, 5) Cage: -1
+: added cell: Cell: (3, 6) Cage: -1
+: added cell: Cell: (3, 7) Cage: -1
+: added cell: Cell: (3, 8) Cage: -1
+: added cell: Cell: (3, 9) Cage: -1
+: added cell: Cell: (4, 1) Cage: -1
+: added cell: Cell: (4, 2) Cage: -1
+: added cell: Cell: (4, 3) Cage: -1
+: added cell: Cell: (4, 4) Cage: -1
+: added cell: Cell: (4, 5) Cage: -1
+: added cell: Cell: (4, 6) Cage: -1
+: added cell: Cell: (4, 7) Cage: -1
+: added cell: Cell: (4, 8) Cage: -1
+: added cell: Cell: (4, 9) Cage: -1
+: added cell: Cell: (5, 1) Cage: -1
+: added cell: Cell: (5, 2) Cage: -1
+: added cell: Cell: (5, 3) Cage: -1
+: added cell: Cell: (5, 4) Cage: -1
+: added cell: Cell: (5, 5) Cage: -1
+: added cell: Cell: (5, 6) Cage: -1
+: added cell: Cell: (5, 7) Cage: -1
+: added cell: Cell: (5, 8) Cage: -1
+: added cell: Cell: (5, 9) Cage: -1
+: added cell: Cell: (6, 1) Cage: -1
+: added cell: Cell: (6, 2) Cage: -1
+: added cell: Cell: (6, 3) Cage: -1
+: added cell: Cell: (6, 4) Cage: -1
+: added cell: Cell: (6, 5) Cage: -1
+: added cell: Cell: (6, 6) Cage: -1
+: added cell: Cell: (6, 7) Cage: -1
+: added cell: Cell: (6, 8) Cage: -1
+: added cell: Cell: (6, 9) Cage: -1
+: added cell: Cell: (7, 1) Cage: -1
+: added cell: Cell: (7, 2) Cage: -1
+: added cell: Cell: (7, 3) Cage: -1
+: added cell: Cell: (7, 4) Cage: -1
+: added cell: Cell: (7, 5) Cage: -1
+: added cell: Cell: (7, 6) Cage: -1
+: added cell: Cell: (7, 7) Cage: -1
+: added cell: Cell: (7, 8) Cage: -1
+: added cell: Cell: (7, 9) Cage: -1
+: added cell: Cell: (8, 1) Cage: -1
+: added cell: Cell: (8, 2) Cage: -1
+: added cell: Cell: (8, 3) Cage: -1
+: added cell: Cell: (8, 4) Cage: -1
+: added cell: Cell: (8, 5) Cage: -1
+: added cell: Cell: (8, 6) Cage: -1
+: added cell: Cell: (8, 7) Cage: -1
+: added cell: Cell: (8, 8) Cage: -1
+: added cell: Cell: (8, 9) Cage: -1
+: added cell: Cell: (9, 1) Cage: -1
+: added cell: Cell: (9, 2) Cage: -1
+: added cell: Cell: (9, 3) Cage: -1
+: added cell: Cell: (9, 4) Cage: -1
+: added cell: Cell: (9, 5) Cage: -1
+: added cell: Cell: (9, 6) Cage: -1
+: added cell: Cell: (9, 7) Cage: -1
+: added cell: Cell: (9, 8) Cage: -1
+: added cell: Cell: (9, 9) Cage: -1
+
+Added 81 cells
+_______________________________________________________
+: added cage: 21 with cell: (Cell: (1, 1) Cage: 1))
+: added cage: 15 with cell: (Cell: (1, 5) Cage: 2))
+: added cage: 17 with cell: (Cell: (1, 7) Cage: 3))
+: added cage: 13 with cell: (Cell: (2, 1) Cage: 4))
+: added cage: 6 with cell: (Cell: (2, 3) Cage: 5))
+: added cage: 14 with cell: (Cell: (2, 6) Cage: 6))
+: added cage: 8 with cell: (Cell: (2, 8) Cage: 7))
+: added cage: 3 with cell: (Cell: (3, 1) Cage: 8))
+: added cage: 9 with cell: (Cell: (3, 2) Cage: 9))
+: added cage: 29 with cell: (Cell: (3, 4) Cage: 10))
+: added cage: 27 with cell: (Cell: (3, 6) Cage: 11))
+: added cage: 11 with cell: (Cell: (3, 9) Cage: 12))
+: added cage: 9 with cell: (Cell: (4, 1) Cage: 13))
+: added cage: 11 with cell: (Cell: (4, 2) Cage: 14))
+: added cage: 8 with cell: (Cell: (4, 3) Cage: 15))
+: added cage: 14 with cell: (Cell: (4, 8) Cage: 16))
+: added cage: 7 with cell: (Cell: (5, 5) Cage: 17))
+: added cage: 9 with cell: (Cell: (5, 9) Cage: 18))
+: added cage: 15 with cell: (Cell: (6, 2) Cage: 19))
+: added cage: 21 with cell: (Cell: (6, 3) Cage: 20))
+: added cage: 12 with cell: (Cell: (6, 4) Cage: 21))
+: added cage: 10 with cell: (Cell: (6, 7) Cage: 22))
+: added cage: 9 with cell: (Cell: (7, 4) Cage: 23))
+: added cage: 12 with cell: (Cell: (7, 6) Cage: 24))
+: added cage: 23 with cell: (Cell: (7, 8) Cage: 25))
+: added cage: 12 with cell: (Cell: (8, 1) Cage: 26))
+: added cage: 11 with cell: (Cell: (8, 4) Cage: 27))
+: added cage: 10 with cell: (Cell: (8, 6) Cage: 28))
+: added cage: 10 with cell: (Cell: (9, 1) Cage: 29))
+: added cage: 4 with cell: (Cell: (9, 3) Cage: 30))
+: added cage: 10 with cell: (Cell: (9, 5) Cage: 31))
+: added cage: 15 with cell: (Cell: (9, 7) Cage: 32))
+
+Added 32 cages
+_______________________________________________________
+: removed cell: Cell: (1, 1) Cage: 1
+: removed cell: Cell: (1, 4) Cage: 2
+: removed cell: Cell: (1, 5) Cage: 2
+: removed cell: Cell: (1, 6) Cage: 2
+: removed cell: Cell: (1, 7) Cage: 3
+: removed cell: Cell: (1, 8) Cage: 7
+: removed cell: Cell: (2, 1) Cage: 1
+: removed cell: Cell: (2, 3) Cage: 5
+: removed cell: Cell: (2, 6) Cage: 6
+: removed cell: Cell: (2, 7) Cage: 3
+: removed cell: Cell: (2, 8) Cage: 7
+: removed cell: Cell: (3, 1) Cage: 1
+: removed cell: Cell: (3, 2) Cage: 9
+: removed cell: Cell: (3, 3) Cage: 5
+: removed cell: Cell: (3, 4) Cage: 10
+: removed cell: Cell: (3, 5) Cage: 10
+: removed cell: Cell: (3, 6) Cage: 11
+: removed cell: Cell: (3, 7) Cage: 11
+: removed cell: Cell: (3, 8) Cage: 11
+: removed cell: Cell: (3, 9) Cage: 12
+: removed cell: Cell: (4, 1) Cage: 1
+: removed cell: Cell: (4, 2) Cage: 9
+: removed cell: Cell: (4, 3) Cage: 15
+: removed cell: Cell: (4, 4) Cage: 15
+: removed cell: Cell: (4, 5) Cage: 15
+: removed cell: Cell: (4, 8) Cage: 16
+: removed cell: Cell: (4, 9) Cage: 16
+: removed cell: Cell: (5, 3) Cage: 15
+: removed cell: Cell: (5, 4) Cage: 21
+: removed cell: Cell: (5, 5) Cage: 17
+: removed cell: Cell: (5, 9) Cage: 18
+: removed cell: Cell: (6, 2) Cage: 19
+: removed cell: Cell: (6, 3) Cage: 20
+: removed cell: Cell: (6, 4) Cage: 20
+: removed cell: Cell: (6, 5) Cage: 17
+: removed cell: Cell: (6, 7) Cage: 22
+: removed cell: Cell: (6, 8) Cage: 25
+: removed cell: Cell: (6, 9) Cage: 18
+: removed cell: Cell: (7, 1) Cage: 26
+: removed cell: Cell: (7, 2) Cage: 19
+: removed cell: Cell: (7, 3) Cage: 20
+: removed cell: Cell: (7, 4) Cage: 20
+: removed cell: Cell: (7, 5) Cage: 17
+: removed cell: Cell: (7, 6) Cage: 24
+: removed cell: Cell: (7, 7) Cage: 22
+: removed cell: Cell: (7, 8) Cage: 25
+: removed cell: Cell: (8, 1) Cage: 26
+: removed cell: Cell: (8, 4) Cage: 27
+: removed cell: Cell: (8, 5) Cage: 27
+: removed cell: Cell: (8, 6) Cage: 24
+: removed cell: Cell: (8, 7) Cage: 32
+: removed cell: Cell: (8, 8) Cage: 25
+: removed cell: Cell: (9, 1) Cage: 26
+: removed cell: Cell: (9, 3) Cage: 30
+: removed cell: Cell: (9, 4) Cage: 30
+: removed cell: Cell: (9, 5) Cage: 31
+: removed cell: Cell: (9, 6) Cage: 31
+: removed cell: Cell: (9, 7) Cage: 32
+: removed cell: Cell: (9, 8) Cage: 32

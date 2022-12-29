@@ -4,7 +4,11 @@ class Cell:
         self.position = position
         self.value = 0
         self.combinations = []
-        self.cage_id = None
+        self.cage_id = -1
+
+    def __str__(self):
+        return f"Cell: {self.position} " \
+               f"Cage: {self.cage_id}"
 
     def get_x_cord(self):
         return self.position[0]

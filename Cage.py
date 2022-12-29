@@ -2,10 +2,10 @@ from global_imports import *
 
 # should only contain code for cages
 class Cage:
-    newid = itertools.count()
+    id_counter = itertools.count(1)
 
     def __init__(self, number, color):
-        self.id = Cage.newid
+        self.id = self.id_counter.__next__()
         self.cells = []
         self.number = number
         self.color = color
