@@ -19,8 +19,8 @@ class Puzzle:
                 else:
                     column = []
                     break
-            for cage in column:
-                columns[x].append(cage)
+            for column_cage in column:
+                columns[x].append(column_cage)
         return columns
 
     # checks if the entire cage is solely contained in one row and adds it to the row_cages dictionary
@@ -35,6 +35,6 @@ class Puzzle:
                 else:
                     row = []
                     break
-            for cage in row:
-                rows[y].append(cage)
+            for row_cage in row:
+                rows[y].append(row_cage)
         return rows

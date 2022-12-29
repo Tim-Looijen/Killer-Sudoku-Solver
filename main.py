@@ -1,20 +1,14 @@
 from global_imports import *
 from Puzzle import Puzzle
 from Data import Data
-from strings import *
-
-
-
 
 def main():
-    cells = []
-    cages = []
-    puzzle = Puzzle(cells, cages)
-    # read screenshot
-    # create cells
-    # create cages
-    # create puzzle
-    # solve puzzle
+    # create a new puzzle based on a single screenshot from a connected phone
+    data = Data()
+    Puzzle = data.fill_puzzle()
+    for cell in Puzzle.cells:
+        print(cell)
+    # solve puzzle, new class Solver will be created
     pass
 
 
