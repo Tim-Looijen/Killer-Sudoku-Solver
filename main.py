@@ -8,8 +8,10 @@ def main(start_time):
     puzzle = Data().fill_puzzle()
     # prints how long it took for the puzzle to be created in milliseconds
     DEBUG.print(Format.Transition, 1, "Puzzle created in %d milliseconds" % ((time.time() - start_time) * 1000))
+    DEBUG.print(Format.Info, 2, "Created %d cages" % puzzle.cages.__len__())
     for cage in puzzle.cages:
-        print(cage)
+        DEBUG.print(Format.Info, 2, cage.__str__())
+
     # solve puzzle, new class Solver will be created
     pass
 

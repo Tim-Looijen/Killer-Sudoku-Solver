@@ -3,7 +3,7 @@ import datetime
 from enum import Enum
 import inspect
 # Used to easily toggle debug output
-GLOBAL_DEBUG_LEVEL = 2
+GLOBAL_DEBUG_LEVEL = 1
 
 
 # Used to change the debug write Format
@@ -28,32 +28,34 @@ class DEBUG:
     f.close()
 
     @staticmethod
-    def print(_format, debug_level, debug=None):
-        if debug_level >= GLOBAL_DEBUG_LEVEL:
-            return
+    def print(_format, debug_level=0, debug=None):
+        if _format == Format.Error:
+            debug_level = 0
+        if _format == Format.Function:
+            debug_level = 2
+        if debug_level <= GLOBAL_DEBUG_LEVEL or debug_level == 0:
+            f = open("app_log.txt", "a")
+            if _format == Format.Info or debug_level <= 1:
+                f.write(_current_time() + ": " + debug + "\n")
+                logging.debug(debug)
+                f.close()
+                return
 
-        f = open("app_log.txt", "a")
-        if _format == Format.Info:
-            f.write(_current_time() + ": " + debug + "\n")
-            logging.debug(debug)
-            f.close()
-            return
+            elif _format == Format.Function:
+                f.write("\n" + _current_time() + ": Function: " + inspect.stack()[1][3] + "\n")
+                logging.debug("Function: " + inspect.stack()[1][3])
+                f.close()
+                return
 
-        elif _format == Format.Function:
-            f.write("\n" + _current_time() + ": Function: " + inspect.stack()[1][3] + "\n")
-            logging.debug("Function: " + inspect.stack()[1][3])
-            f.close()
-            return
+            elif _format == Format.Transition:
+                f.write("\n" + _current_time() + ": " + debug)
+                logging.debug(debug)
+                f.write("\n_______________________________________________________\n\n")
+                f.close()
+                return
 
-        elif _format == Format.Transition:
-            f.write("\n" + _current_time() + ": " + debug)
-            logging.debug(debug)
-            f.write("\n_______________________________________________________\n\n")
-            f.close()
-            return
-
-        elif _format == Format.Error:
-            f.write("ERROR: " + debug + "\n")
-            logging.error(debug)
-            f.close()
-            return
+            elif _format == Format.Error:
+                f.write("ERROR: " + debug + "\n")
+                logging.error(debug)
+                f.close()
+                return

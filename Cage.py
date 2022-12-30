@@ -1,7 +1,6 @@
 from global_imports import itertools
-from DEBUG import DEBUG, Format
 
-# should only contain code for cages
+
 class Cage:
     id_counter = itertools.count(1)
 

@@ -1,4 +1,3 @@
-# should only contain code for cells
 class Cell:
     def __init__(self, position):
         self.position = position
