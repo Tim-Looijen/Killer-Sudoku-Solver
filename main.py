@@ -1,5 +1,5 @@
 from global_imports import *
-from Puzzle import Puzzle
+from DEBUG import DEBUG, Format
 from Data import Data
 
 def main():

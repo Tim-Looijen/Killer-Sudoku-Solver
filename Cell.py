@@ -2,6 +2,8 @@
 class Cell:
     def __init__(self, position):
         self.position = position
+        self.column = position[0]
+        self.row = position[1]
         self.value = 0
         self.combinations = []
         self.cage_id = -1
@@ -9,13 +11,6 @@ class Cell:
     def __str__(self):
         return f"Cell: {self.position} " \
                f"Cage: {self.cage_id}"
-
-    def get_x_cord(self):
-        return self.position[0]
-
-    def get_y_cord(self):
-        return self.position[1]
-
     def add_value(self, value):
         if self.value == value:
             return

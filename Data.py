@@ -1,26 +1,33 @@
 from global_imports import *
-from constants import *
+from DEBUG import DEBUG, Format
 from Puzzle import Puzzle
 
-
-
-
 # contains all data and functions to create a puzzle based on a screenshot
-logging.basicConfig(level=logging.DEBUG)
-logging.basicConfig(filename='app_log.txt', filemode='w')
 class Data:
     def __init__(self):
-        logging.info("Data init")
+        self.device = self.connect_phone()
+        DEBUG.print(Format.Info, 1, "Connected to phone")
+        self.image_cv2 = self.create_puzzle_image()
+        DEBUG.print(Format.Info, 1, "Created puzzle image")
+        cv2.imwrite("puzzle.png", self.image_cv2)
+
+    # connects to the phone and returns the device
+    def connect_phone(self):
+        DEBUG.print(Format.Function, 1)
+        DEBUG.print(Format.Info, 1, "Connecting to phone...")
         _adb_server_path = "C:/Users/tim/Desktop/Programming/Python/Programs/Killer_Sudoku_New/scrcpy-win64-v1.24"
         subprocess.check_output("adb start-server", cwd=_adb_server_path, shell=True)
         client = AdbClient(host="127.0.0.1", port=5037)
-        self.device = client.device(client.devices()[0].serial)
-        self.image_cv2 = self.create_puzzle_image()
-        cv2.imwrite("puzzle.png", self.image_cv2)
+        try:
+            device = client.device(client.devices()[0].serial)
+            return device
+        except:
+            DEBUG.print(Format.Error, 1, "No phone connected")
+            sys.exit()
 
     # get screenshot from phone
     def create_puzzle_image(self):
-        logging.info("create_puzzle_image")
+        DEBUG.print(Format.Function, 1)
         _screenshot = self.device.screencap()
 
         # convert image to numpy array
@@ -33,7 +40,7 @@ class Data:
 
 
     def fill_puzzle(self):
-        logging.info("fill_puzzle")
+        DEBUG.print(Format.Function, 1)
         cells = self.create_cells()
         cages = self.create_cages(cells)
         self.fill_cages(cells, cages)
@@ -41,7 +48,7 @@ class Data:
 
     # fills the cells list with dummy cells, only containing their position
     def create_cells(self):
-        logging.info("create_cells")
+        DEBUG.print(Format.Function, 1)
         cells = []
         column = 1
         row = 1
@@ -49,7 +56,7 @@ class Data:
         cell_y = CELL_SIZE
         for i in range(1, 82):
             cells.append(Cell((row, column)))
-            DEBUG.write_to_file(0, "added cell: %s" % cells[i - 1].__str__())
+            DEBUG.print(Format.Info, 1, "added cell: %s" % cells[i - 1].__str__())
             cell_x += CELL_DISTANCE
 
             # if the cell is in the last column, go to the next row
@@ -59,12 +66,13 @@ class Data:
                 column = 0
                 row += 1
             column += 1
-        DEBUG.write_to_file(1, "Added %d cells" % cells.__len__())
+
+        DEBUG.print(Format.Transition, 1, "Added %d cells" % cells.__len__())
         return cells
 
     # loops through all cells and checks if a cage number is present in the cell, if so, it adds the number to the cage
     def create_cages(self, cells):
-        logging.info("create_cages")
+        DEBUG.print(Format.Function, 1)
         cages = []
         for i in range(0, cells.__len__()):
             cage_size = self._read_cage_number(cells[i].position)
@@ -76,52 +84,43 @@ class Data:
                 cage = Cage(cage_number, cage_color)
                 cell.cage_id = cage.id
                 cage.add_cell(cell)
-                DEBUG.write_to_file(0, "added cage: %d with cell: (%s))" % (cage_number, cell.__str__()))
-                logging.info("added cage: %d with cell: (%s))" % (cage_number, cell.__str__()))
+                DEBUG.print(Format.Info, 1, f"Added: {cage.__str__()}")
                 cages.append(cage)
-        DEBUG.write_to_file(1, "Added %d cages" % cages.__len__())
+        DEBUG.print(Format.Transition, 1, "Added %d cages" % cages.__len__())
         return cages
 
-    # fills the cages with the cells that are contained in the cage
     def fill_cages(self, cells, cages):
-        logging.info("fill_cages")
-        # creates a copy of cells so that the original list is not modified
-        cells_to_check = cells
+        DEBUG.print(Format.Function, 1)
+        cells_to_check = cells.copy()
+        for i in range(0, cells_to_check.__len__()):
+            if cells[i].cage_id != -1:
+                DEBUG.print(Format.Info, 1, f"Removed: {cells[i].__str__()} from cells_to_check")
+                cells_to_check.remove(cells[i])
+        DEBUG.print(Format.Transition, 1, f"Cells removed: {cells.__len__() - cells_to_check.__len__()}")
+        # checks if a cell from the cells list is adjacent to any cell in the cage and has the same cage color
         while cells_to_check.__len__() != 0:
-
-            # DEBUG STUFF
-            if (cells_to_check.__len__() == 22):
-                for cell in cells:
-                    print(cell)
-                for cell in cells_to_check:
-                    print(cell)
-                print(cages[0].cells[0].__str__())
-
-                time.sleep(120)
+            # raises an exception so that when a cell is removed from the list, the loop doesn't skip a cell
             try:
-                for cell in cells_to_check:
-                    cell_color = self._cell_color(cell.position)
-                    for cage in cages:
+                for i in range(0, cages.__len__()):
+                    cage = cages[i]
+                    for j in range(0, cells_to_check.__len__()):
+                        cell = cells_to_check[j]
+                        cell_color = self._cell_color(cell.position)
                         for cage_cell in cage.cells:
-                            if np.all(cell.position == cage_cell.position):
+                            if self._are_adjacent(cell.position, cage_cell.position) and np.all(cell_color == cage.color):
+                                cage.add_cell(cell)
                                 cells_to_check.remove(cell)
-                                # raises an exception so that the loop is exited
-                                raise Exception(cell)
-                            if self._are_adjacent(cell.position, cage_cell.position):
-                                if np.all(cell_color == cage.color):
-                                    cage.add_cell(cell)
-                                    cells_to_check.remove(cell)
-                                    # raises an exception so that the loop is exited
-                                    raise Exception(cell)
-            except Exception as cell:
-                DEBUG.write_to_file(0, "removed cell: %s" % (cell.__str__()))
-
+                                raise StopIteration(cell)
+            except StopIteration as cell:
+                    DEBUG.print(Format.Info, 1, f"Added {cell.__str__()}")
+        DEBUG.print(Format.Transition, 1, "Filled cages")
         return cages
 
-    def _cell_color(self, position):
+    def _cell_color(self, position, debug=False):
+
         x = (position[0]-1) * CELL_DISTANCE + CELL_SIZE
         y = (position[1]-1) * CELL_DISTANCE + CELL_SIZE
-        return self.image_cv2[y, x]
+        return self.image_cv2[x, y]
 
     def _are_adjacent(self, position_1, position_2):
         x1, y1 = position_1
@@ -134,8 +133,9 @@ class Data:
         # -1 because the row and column start at 1
         x = position[0] - 1
         y = position[1] - 1
-        puzzle_image = self.image_cv2[1 + CELL_DISTANCE * x:30 + CELL_DISTANCE * x,
-                                                            0 + CELL_DISTANCE * y:36 + CELL_DISTANCE * y]
+        copied_image = self.image_cv2.copy()
+        puzzle_image = copied_image[1 + CELL_DISTANCE * x:30 + CELL_DISTANCE * x,
+                                    0 + CELL_DISTANCE * y:36 + CELL_DISTANCE * y]
         # convert all non-pure-black pixels to white, since numbers in the image
         puzzle_image[puzzle_image != 0] = 255
         # adds a white border around the number, so that the number can be easily read by pytesseract

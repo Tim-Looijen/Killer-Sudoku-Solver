@@ -1,4 +1,5 @@
-from global_imports import *
+from global_imports import itertools
+from DEBUG import DEBUG, Format
 
 # should only contain code for cages
 class Cage:
@@ -10,6 +11,13 @@ class Cage:
         self.number = number
         self.color = color
         self.size = 0
+
+    def __str__(self):
+        cells = ',\n'.join(cell.__str__() for cell in self.cells)
+        return f"Cage: {self.id} " \
+               f"Number: {self.number} " \
+               f"Color: {self.color} " \
+               f"Cells: \n{cells}"
 
     def add_cell(self, cell):
         cell.cage_id = self.id
