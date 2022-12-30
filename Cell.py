@@ -2,8 +2,8 @@
 class Cell:
     def __init__(self, position):
         self.position = position
-        self.column = position[0]
-        self.row = position[1]
+        self.row = position[0]
+        self.column = position[1]
         self.value = 0
         self.combinations = []
         self.cage_id = -1
