@@ -5,6 +5,7 @@ class Puzzle:
     def __init__(self, cells, cages):
         self.cells = cells
         self.cages = cages
+        self.combinations = {cell: ([], None) for cell in self.cells}
         self.column_cages = self.add_column_cages()
         self.row_cages = self.add_row_cages()
 

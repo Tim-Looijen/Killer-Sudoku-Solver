@@ -1,6 +1,7 @@
 from global_imports import *
 from DEBUG import DEBUG, Format
 from Data import Data
+import random
 
 
 def main(start_time):
@@ -11,6 +12,8 @@ def main(start_time):
     DEBUG.print(Format.Info, 2, "Created %d cages" % puzzle.cages.__len__())
     for cage in puzzle.cages:
         DEBUG.print(Format.Info, 2, cage.__str__())
+    for cell, combination in puzzle.combinations.items():
+        DEBUG.print(Format.Info, 2, f"{combination.__str__()} for {cell.__str__()}")
 
     # solve puzzle, new class Solver will be created
     pass

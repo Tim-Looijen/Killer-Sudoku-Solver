@@ -1,12 +1,28 @@
+from enum import Enum
 import logging
 import datetime
-from enum import Enum
 import inspect
+import os
+
 # Used to easily toggle debug output
 GLOBAL_DEBUG_LEVEL = 1
+AMOUNT_LOG_FILES = 5
 
 
-# Used to change the debug write Format
+def _current_time():
+    return datetime.datetime.now().strftime("%H:%M:%S.%f")[:-3]
+
+
+def _create_debug_file():
+    if not os.path.exists("DEBUG"):
+        os.makedirs("DEBUG")
+    files = os.listdir("DEBUG")
+    if files.__len__() >= AMOUNT_LOG_FILES:
+        files.sort()
+        os.remove("debug/" + files[0])
+    return "debug/debug_%s.txt" % _current_time().replace(":", "-")
+
+
 class Format(Enum):
     Info = 1
     Function = 2
@@ -14,14 +30,12 @@ class Format(Enum):
     Error = 4
 
 
-# get the current time to see how long each section of the program takes to run
-def _current_time():
-    return datetime.datetime.now().strftime("%H:%M:%S.%f")[:-3]
-
+current_file = _create_debug_file()
 
 class DEBUG:
     logging.basicConfig(level=logging.DEBUG)
-    f = open("app_log.txt", "w")
+
+    f = open(current_file, "w")
     f.write("\n-----------------------------------------------------------------------------------------------\n")
     f.write("   new run at: %s" % _current_time())
     f.write("\n-----------------------------------------------------------------------------------------------\n")
@@ -34,7 +48,8 @@ class DEBUG:
         if _format == Format.Function:
             debug_level = 2
         if debug_level <= GLOBAL_DEBUG_LEVEL or debug_level == 0:
-            f = open("app_log.txt", "a")
+            f = open(current_file, "a")
+            # makes sure that any fancy debug output is only printed if the debug_level is high enough
             if _format == Format.Info or debug_level <= 1:
                 f.write(_current_time() + ": " + debug + "\n")
                 logging.debug(debug)
