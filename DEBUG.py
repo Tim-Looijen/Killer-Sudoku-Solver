@@ -5,12 +5,18 @@ import inspect
 import os
 
 # Used to easily toggle debug output
-GLOBAL_DEBUG_LEVEL = 2
+GLOBAL_DEBUG_LEVEL = 1
 AMOUNT_LOG_FILES = 5
 
 
+# return current time in the format [HH:MM:SS.MS]
 def _current_time():
     return datetime.datetime.now().strftime("%H:%M:%S.%f")[:-3]
+
+
+# returns current date in the format [YYYY_MM_DD HH:MM:SS]
+def _current_date():
+    return datetime.datetime.now().strftime("%Y_%m_%d %H!%M!%S")
 
 
 def _create_debug_file():
@@ -22,7 +28,7 @@ def _create_debug_file():
     if files.__len__() >= AMOUNT_LOG_FILES:
         files.sort()
         os.remove("debug/" + files[0])
-    return "debug/debug_%s.txt" % _current_time().replace(":", "-")
+    return f"debug/debug_{_current_date()}.txt"
 
 
 # used to format the debug output
@@ -34,6 +40,7 @@ class Format(Enum):
 
 
 current_file = _create_debug_file()
+
 
 class DEBUG:
     logging.basicConfig(level=logging.DEBUG)
