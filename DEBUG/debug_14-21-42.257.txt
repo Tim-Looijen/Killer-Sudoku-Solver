@@ -1,0 +1,104 @@
+
+-----------------------------------------------------------------------------------------------
+   new run at: 14:21:42.257
+-----------------------------------------------------------------------------------------------
+
+14:21:42.258: Function: connect_phone
+14:21:42.305: Connecting to phone...
+14:21:42.326: Connected to phone
+
+14:21:42.326: Function: create_puzzle_image
+14:21:42.639: Created puzzle image
+
+14:21:42.639: Function: fill_puzzle
+
+14:21:42.641: Function: create_cells
+14:21:42.644: added cell: Cell: (1, 1) Cage: -1
+14:21:42.644: added cell: Cell: (1, 2) Cage: -1
+14:21:42.645: added cell: Cell: (1, 3) Cage: -1
+14:21:42.645: added cell: Cell: (1, 4) Cage: -1
+14:21:42.645: added cell: Cell: (1, 5) Cage: -1
+14:21:42.645: added cell: Cell: (1, 6) Cage: -1
+14:21:42.646: added cell: Cell: (1, 7) Cage: -1
+14:21:42.646: added cell: Cell: (1, 8) Cage: -1
+14:21:42.646: added cell: Cell: (1, 9) Cage: -1
+14:21:42.646: added cell: Cell: (2, 1) Cage: -1
+14:21:42.647: added cell: Cell: (2, 2) Cage: -1
+14:21:42.647: added cell: Cell: (2, 3) Cage: -1
+14:21:42.647: added cell: Cell: (2, 4) Cage: -1
+14:21:42.648: added cell: Cell: (2, 5) Cage: -1
+14:21:42.648: added cell: Cell: (2, 6) Cage: -1
+14:21:42.648: added cell: Cell: (2, 7) Cage: -1
+14:21:42.648: added cell: Cell: (2, 8) Cage: -1
+14:21:42.649: added cell: Cell: (2, 9) Cage: -1
+14:21:42.649: added cell: Cell: (3, 1) Cage: -1
+14:21:42.649: added cell: Cell: (3, 2) Cage: -1
+14:21:42.649: added cell: Cell: (3, 3) Cage: -1
+14:21:42.650: added cell: Cell: (3, 4) Cage: -1
+14:21:42.650: added cell: Cell: (3, 5) Cage: -1
+14:21:42.650: added cell: Cell: (3, 6) Cage: -1
+14:21:42.650: added cell: Cell: (3, 7) Cage: -1
+14:21:42.650: added cell: Cell: (3, 8) Cage: -1
+14:21:42.651: added cell: Cell: (3, 9) Cage: -1
+14:21:42.651: added cell: Cell: (4, 1) Cage: -1
+14:21:42.651: added cell: Cell: (4, 2) Cage: -1
+14:21:42.651: added cell: Cell: (4, 3) Cage: -1
+14:21:42.651: added cell: Cell: (4, 4) Cage: -1
+14:21:42.652: added cell: Cell: (4, 5) Cage: -1
+14:21:42.652: added cell: Cell: (4, 6) Cage: -1
+14:21:42.652: added cell: Cell: (4, 7) Cage: -1
+14:21:42.652: added cell: Cell: (4, 8) Cage: -1
+14:21:42.652: added cell: Cell: (4, 9) Cage: -1
+14:21:42.652: added cell: Cell: (5, 1) Cage: -1
+14:21:42.653: added cell: Cell: (5, 2) Cage: -1
+14:21:42.653: added cell: Cell: (5, 3) Cage: -1
+14:21:42.653: added cell: Cell: (5, 4) Cage: -1
+14:21:42.653: added cell: Cell: (5, 5) Cage: -1
+14:21:42.653: added cell: Cell: (5, 6) Cage: -1
+14:21:42.653: added cell: Cell: (5, 7) Cage: -1
+14:21:42.654: added cell: Cell: (5, 8) Cage: -1
+14:21:42.654: added cell: Cell: (5, 9) Cage: -1
+14:21:42.654: added cell: Cell: (6, 1) Cage: -1
+14:21:42.654: added cell: Cell: (6, 2) Cage: -1
+14:21:42.654: added cell: Cell: (6, 3) Cage: -1
+14:21:42.654: added cell: Cell: (6, 4) Cage: -1
+14:21:42.655: added cell: Cell: (6, 5) Cage: -1
+14:21:42.655: added cell: Cell: (6, 6) Cage: -1
+14:21:42.655: added cell: Cell: (6, 7) Cage: -1
+14:21:42.655: added cell: Cell: (6, 8) Cage: -1
+14:21:42.655: added cell: Cell: (6, 9) Cage: -1
+14:21:42.655: added cell: Cell: (7, 1) Cage: -1
+14:21:42.656: added cell: Cell: (7, 2) Cage: -1
+14:21:42.656: added cell: Cell: (7, 3) Cage: -1
+14:21:42.656: added cell: Cell: (7, 4) Cage: -1
+14:21:42.656: added cell: Cell: (7, 5) Cage: -1
+14:21:42.656: added cell: Cell: (7, 6) Cage: -1
+14:21:42.656: added cell: Cell: (7, 7) Cage: -1
+14:21:42.657: added cell: Cell: (7, 8) Cage: -1
+14:21:42.657: added cell: Cell: (7, 9) Cage: -1
+14:21:42.657: added cell: Cell: (8, 1) Cage: -1
+14:21:42.657: added cell: Cell: (8, 2) Cage: -1
+14:21:42.657: added cell: Cell: (8, 3) Cage: -1
+14:21:42.657: added cell: Cell: (8, 4) Cage: -1
+14:21:42.658: added cell: Cell: (8, 5) Cage: -1
+14:21:42.658: added cell: Cell: (8, 6) Cage: -1
+14:21:42.658: added cell: Cell: (8, 7) Cage: -1
+14:21:42.658: added cell: Cell: (8, 8) Cage: -1
+14:21:42.658: added cell: Cell: (8, 9) Cage: -1
+14:21:42.658: added cell: Cell: (9, 1) Cage: -1
+14:21:42.659: added cell: Cell: (9, 2) Cage: -1
+14:21:42.659: added cell: Cell: (9, 3) Cage: -1
+14:21:42.659: added cell: Cell: (9, 4) Cage: -1
+14:21:42.659: added cell: Cell: (9, 5) Cage: -1
+14:21:42.659: added cell: Cell: (9, 6) Cage: -1
+14:21:42.659: added cell: Cell: (9, 7) Cage: -1
+14:21:42.660: added cell: Cell: (9, 8) Cage: -1
+14:21:42.660: added cell: Cell: (9, 9) Cage: -1
+14:21:42.660: Added 81 cells
+
+14:21:42.660: Function: create_cages
+14:21:42.662: Adding cages...
+14:21:42.817: Added: Cage: 1 Number: 9 Color: [203 241 195] Cells: 
+Cell: (1, 1) Cage: 1
+14:21:43.141: Added: Cage: 2 Number: 15 Color: [184 248 255] Cells: 
+Cell: (1, 4) Cage: 2

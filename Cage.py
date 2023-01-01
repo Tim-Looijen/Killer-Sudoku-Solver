@@ -27,6 +27,6 @@ class Cage:
         for cell in self.cells:
             cell.update_value(value)
 
-    def update_all_cells_combinations(self, combinations):
+    def update_all_cells_combinations(self, combination):
         for cell in self.cells:
-            cell.update_combinations(combinations)
+            cell.update_combination(combination)

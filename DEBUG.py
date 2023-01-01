@@ -5,7 +5,7 @@ import inspect
 import os
 
 # Used to easily toggle debug output
-GLOBAL_DEBUG_LEVEL = 1
+GLOBAL_DEBUG_LEVEL = 2
 AMOUNT_LOG_FILES = 5
 
 
@@ -17,12 +17,15 @@ def _create_debug_file():
     if not os.path.exists("DEBUG"):
         os.makedirs("DEBUG")
     files = os.listdir("DEBUG")
+
+    # if there are more than AMOUNT_LOG_FILES files in the DEBUG folder, delete the oldest one
     if files.__len__() >= AMOUNT_LOG_FILES:
         files.sort()
         os.remove("debug/" + files[0])
     return "debug/debug_%s.txt" % _current_time().replace(":", "-")
 
 
+# used to format the debug output
 class Format(Enum):
     Info = 1
     Function = 2

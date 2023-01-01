@@ -4,6 +4,7 @@ class Cell:
         self.row = position[0]
         self.column = position[1]
         self.value = 0
+        self.combinations = []
         self.cage_id = -1
 
     def __str__(self):
@@ -14,3 +15,6 @@ class Cell:
         if self.value == value:
             return
         self.value = value
+
+    def add_combination(self, combination):
+        self.combinations.append(combination)
