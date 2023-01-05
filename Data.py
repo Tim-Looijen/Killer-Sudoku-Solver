@@ -7,15 +7,15 @@ from Puzzle import Puzzle
 class Data:
     def __init__(self):
         self.device = self.connect_phone()
-        DEBUG.print(Format.Info, 0, "Connected to phone")
+        DEBUG.print(Format.Info, 0, "connected to phone")
         self.image_cv2 = self.create_puzzle_image()
-        DEBUG.print(Format.Info, 0, "Created puzzle image")
+        DEBUG.print(Format.Info, 0, "created puzzle image")
 
     # connects to the phone and returns the device
     @staticmethod
     def connect_phone():
         DEBUG.print(Format.Function)
-        DEBUG.print(Format.Info, 0, "Connecting to phone...")
+        DEBUG.print(Format.Info, 0, "connecting to phone...")
         _adb_server_path = "C:/Users/tim/Desktop/Programming/Python/Programs/Killer_Sudoku_New/scrcpy-win64-v1.24"
         subprocess.check_output("adb start-server", cwd=_adb_server_path, shell=True)
         client = AdbClient(host="127.0.0.1", port=5037)
@@ -23,7 +23,7 @@ class Data:
             device = client.device(client.devices()[0].serial)
             return device
         except:
-            DEBUG.print(Format.Error, debug="No phone connected")
+            DEBUG.print(Format.Error, debug="no phone connected")
             sys.exit()
 
     # get screenshot from phone
@@ -44,7 +44,7 @@ class Data:
         cells = self.create_cells()
         cages = self.create_cages(cells)
         self.fill_cages(cells, cages)
-        DEBUG.print(Format.Transition, 2, "Initializing the puzzle...")
+        DEBUG.print(Format.Transition, 2, "initializing the puzzle...")
         return Puzzle(cells, cages)
 
     # fills the cells list with dummy cells, only containing their position
@@ -68,35 +68,41 @@ class Data:
                 row += 1
             column += 1
 
-        DEBUG.print(Format.Transition, 1, "Added %d cells" % cells.__len__())
+        DEBUG.print(Format.Transition, 1, "added %d cells" % cells.__len__())
         return cells
 
     # loops through all cells and checks if a cage number is present in the cell, if so, it adds the number to the cage
     def create_cages(self, cells):
         DEBUG.print(Format.Function)
-        DEBUG.print(Format.Info, 1, "Adding cages...")
+        DEBUG.print(Format.Info, 1, "adding cages...")
         cages = []
-        for i in range(0, cells.__len__()):
-            cell_number_list = re.findall('[0-9]+', self._read_cage_number(cells[i].position))
+        for cell in cells:
+
+            # display the image to see why it cant read the cage number
+            if cell.position == (4, 7):
+                DEBUG.show_image(cell.position)
+
+
+            cell_number_list = re.findall('[0-9]+', self._read_cage_number(cell.position))
             if cell_number_list.__len__() != 0:
-                cell = cells[i]
-                cage_color = self._cell_color(cells[i].position)
+                cage_color = self._cell_color(cell.position)
                 cage_number = int(cell_number_list[0])
                 cage = Cage(cage_number, cage_color)
                 cage.add_cell(cell)
                 cages.append(cage)
-                DEBUG.print(Format.Info, 2, f"Added: {cage.__str__()}")
-        DEBUG.print(Format.Transition, 1, "Added %d cages" % cages.__len__())
+                DEBUG.print(Format.Info, 2, f"added: {cage.__str__()}")
+        DEBUG.print(Format.Transition, 1, "added %d cages" % cages.__len__())
         return cages
 
     def fill_cages(self, cells, cages):
         DEBUG.print(Format.Function)
+        DEBUG.print(Format.Info, 1, "filling cages...")
         cells_to_check = cells.copy()
         for i in range(0, cells_to_check.__len__()):
             if cells[i].cage_id != -1:
-                DEBUG.print(Format.Info, 2, f"Removed: {cells[i].__str__()} from cells_to_check")
+                DEBUG.print(Format.Info, 2, f"removed: {cells[i].__str__()} from cells_to_check")
                 cells_to_check.remove(cells[i])
-        DEBUG.print(Format.Transition, 2, f"Cells removed: {cells.__len__() - cells_to_check.__len__()}")
+        DEBUG.print(Format.Transition, 2, f"cells removed: {cells.__len__() - cells_to_check.__len__()}")
         # checks if a cell from the cells list is adjacent to any cell in the cage and has the same cage color
         while cells_to_check.__len__() != 0:
             # raises an exception so that when a cell is removed from the list, the loop doesn't skip a cell
@@ -112,8 +118,8 @@ class Data:
                                 cells_to_check.remove(cell)
                                 raise StopIteration(cell)
             except StopIteration as cell:
-                DEBUG.print(Format.Info, 2, f"Added {cell.__str__()}")
-        DEBUG.print(Format.Transition, 0, "Filled cages")
+                DEBUG.print(Format.Info, 2, f"added {cell.__str__()}")
+        DEBUG.print(Format.Transition, 0, "filled cages")
         return cages
 
     def _cell_color(self, position):
@@ -137,17 +143,17 @@ class Data:
 
         # copies the image so that the original image isn't changed
         copied_image = self.image_cv2.copy()
-        puzzle_image = copied_image[1 + CELL_DISTANCE * x:30 + CELL_DISTANCE * x,
-                                    0 + CELL_DISTANCE * y:36 + CELL_DISTANCE * y]
+        cell_corner_image = copied_image[1 + CELL_DISTANCE * x:30 + CELL_DISTANCE * x,
+                                         1 + CELL_DISTANCE * y:36 + CELL_DISTANCE * y]
 
         # convert all non-pure-black pixels to white, since numbers in the image
-        puzzle_image[puzzle_image != 0] = 255
+        cell_corner_image[cell_corner_image != 0] = 255
 
         # adds a white border around the number, so that the number can be easily read by pytesseract
-        puzzle_image = cv2.copyMakeBorder(puzzle_image, 5, 5, 5, 5, cv2.BORDER_CONSTANT, value=[255, 255, 255])
+        cell_corner_image = cv2.copyMakeBorder(cell_corner_image, 5, 5, 5, 5, cv2.BORDER_CONSTANT, value=[255, 255, 255])
 
         # converts the image to a string
         pytesseract.pytesseract.tesseract_cmd = PYTESSERACT_PATH
-        possible_cage_number = pytesseract.image_to_string(puzzle_image, config='--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789')
+        possible_cage_number = pytesseract.image_to_string(cell_corner_image, config='--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789')
 
         return possible_cage_number

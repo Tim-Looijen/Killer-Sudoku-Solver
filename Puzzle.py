@@ -1,5 +1,6 @@
 from DEBUG import DEBUG, Format
 from Combination import Combination
+from Solver import Solver
 
 
 class Puzzle:
@@ -18,8 +19,8 @@ class Puzzle:
             x = cage.cells[0].column
             if all(x == cell.column for cell in cage.cells):
                 columns[x].append(cage)
-                DEBUG.print(Format.Info, 2, f"Added cage {(cage.id, cage.number)} to column {x}")
-        DEBUG.print(Format.Transition, 2, "Filled %d columns" % [column for column in columns.values() if column].__len__())
+                DEBUG.print(Format.Info, 2, f"added cage {(cage.id, cage.sum)} to column {x}")
+        DEBUG.print(Format.Transition, 2, "filled %d columns" % [column for column in columns.values() if column].__len__())
         return columns
 
     # checks if the entire cage is solely contained in one row and adds it to the row_cages dictionary
@@ -30,13 +31,14 @@ class Puzzle:
             y = cage.cells[0].row
             if all(y == cell.row for cell in cage.cells):
                 rows[y].append(cage)
-                DEBUG.print(Format.Info, 2, f"Added cage {(cage.id, cage.number)} to row {y}")
+                DEBUG.print(Format.Info, 2, f"added cage {(cage.id, cage.sum)} to row {y}")
         # prints the amount of rows which have cages
-        DEBUG.print(Format.Transition, 2, "Filled %d rows" % [row for row in rows.values() if row].__len__())
+        DEBUG.print(Format.Transition, 2, "filled %d rows" % [row for row in rows.values() if row].__len__())
         return rows
 
-    def add_cells_combination(self, cells, combination):
-        for cell in cells:
-            self.cells[cell].add_combination(combination)
-            DEBUG.print(Format.Info, 2, f"Added {combination.__str__()} to {cell.__str__()}")
-        self.combinations.append(Combination(cells, combination))
+    def add_combination(self, combination):
+        self.combinations.append(combination)
+
+    def solve(self):
+        Solver(self)
+        pass

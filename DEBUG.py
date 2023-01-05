@@ -3,10 +3,12 @@ import logging
 import datetime
 import inspect
 import os
-
+import cv2
+from constants import *
 # Used to easily toggle debug output
-GLOBAL_DEBUG_LEVEL = 1
+GLOBAL_DEBUG_LEVEL = 2
 AMOUNT_LOG_FILES = 5
+DEBUG_IMAGE = False
 
 
 # return current time in the format [HH:MM:SS.MS]
@@ -56,7 +58,7 @@ class DEBUG:
         if _format == Format.Error:
             debug_level = 0
         if _format == Format.Function:
-            debug_level = 2
+            debug_level = 3
         if debug_level <= GLOBAL_DEBUG_LEVEL or debug_level == 0:
             f = open(current_file, "a")
             # makes sure that any fancy debug output is only printed if the debug_level is high enough
@@ -67,8 +69,8 @@ class DEBUG:
                 return
 
             elif _format == Format.Function:
-                f.write("\n" + _current_time() + ": Function: " + inspect.stack()[1][3] + "\n")
-                logging.debug("Function: " + inspect.stack()[1][3])
+                f.write("\n" + _current_time() + ": function: " + inspect.stack()[1][3] + "\n")
+                logging.debug("function: " + inspect.stack()[1][3])
                 f.close()
                 return
 
@@ -84,3 +86,24 @@ class DEBUG:
                 logging.error(debug)
                 f.close()
                 return
+
+    @staticmethod
+    def show_image(position):
+        if DEBUG_IMAGE:
+            x = position[0] - 1
+            y = position[1] - 1
+
+            # copies the image so that the original image isn't changed
+            copied_image = cv2.imread("puzzle.png").copy()
+            cell_corner_image = copied_image[1 + CELL_DISTANCE * x:30 + CELL_DISTANCE * x,
+                                             1 + CELL_DISTANCE * y:36 + CELL_DISTANCE * y]
+
+            # convert all non-pure-black pixels to white, since numbers in the image
+            cell_corner_image[cell_corner_image != 0] = 255
+
+            # adds a white border around the number, so that the number can be easily read by pytesseract
+            cell_corner_image = cv2.copyMakeBorder(cell_corner_image, 5, 5, 5, 5, cv2.BORDER_CONSTANT, value=[255, 255, 255])
+
+            cv2.imshow("image", cell_corner_image)
+            cv2.waitKey(0)
+            cv2.destroyAllWindows()

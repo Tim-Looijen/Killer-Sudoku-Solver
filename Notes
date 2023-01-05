@@ -1,3 +1,7 @@
-much better data structure using classes, should improve manageability of code
+time for the algoritmes themselves.
 
-need to use DEBUG flag to turn on/off debug messages
+have all combinations list be only present in Puzzles.combinations
+
+we must first do the basic ones, such as the cage fills entire row, column, 3x3 grid but 1 or multiple cells.
+and then another basic one such as the cage combinations based on amount of cells and the sum of the cage.
+and then one which combines the 2, so that the cage combinations are based on the cells which have quaranteed possible numbers in them.
