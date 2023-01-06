@@ -1,6 +1,10 @@
+
+
+taking a small break from algoritmes to implement a way to export combinations and values to the phone
+
 time for the algoritmes themselves.
 
-have all combinations list be only present in Puzzles.combinations
+
 
 we must first do the basic ones, such as the cage fills entire row, column, 3x3 grid but 1 or multiple cells.
 and then another basic one such as the cage combinations based on amount of cells and the sum of the cage.

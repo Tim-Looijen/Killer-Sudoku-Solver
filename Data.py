@@ -9,6 +9,8 @@ class Data:
         self.device = self.connect_phone()
         DEBUG.print(Format.Info, 0, "connected to phone")
         self.image_cv2 = self.create_puzzle_image()
+        # saves the screenshot to a file for debugging purposes
+        cv2.imwrite("DEBUG/puzzle.png", self.image_cv2)
         DEBUG.print(Format.Info, 0, "created puzzle image")
 
     # connects to the phone and returns the device
@@ -30,6 +32,10 @@ class Data:
     def create_puzzle_image(self):
         DEBUG.print(Format.Function)
         _screenshot = self.device.screencap()
+
+        # saves the screenshot to a file for debugging purposes
+        with open("DEBUG/phone_screen.png", "wb") as f:
+            f.write(_screenshot)
 
         # convert image to numpy array
         _image_np = np.frombuffer(_screenshot, dtype=np.uint8)
@@ -122,7 +128,8 @@ class Data:
                         cell = cells_to_check[j]
                         cell_color = self._cell_color(cell.position)
                         for cage_cell in cage.cells:
-                            if self._are_adjacent(cell.position, cage_cell.position) and np.all(cell_color == cage.color):
+                            if self._are_adjacent(cell.position, cage_cell.position) and np.all(
+                                    cell_color == cage.color):
                                 cage.add_cell(cell)
                                 cells_to_check.remove(cell)
                                 raise StopIteration(cell)
@@ -132,8 +139,8 @@ class Data:
         return cages
 
     def _cell_color(self, position):
-        x = (position[0]-1) * CELL_DISTANCE + CELL_SIZE
-        y = (position[1]-1) * CELL_DISTANCE + CELL_SIZE
+        x = (position[0] - 1) * CELL_DISTANCE + CELL_SIZE
+        y = (position[1] - 1) * CELL_DISTANCE + CELL_SIZE
         return self.image_cv2[x, y]
 
     @staticmethod
@@ -153,16 +160,18 @@ class Data:
         # copies the image so that the original image isn't changed
         copied_image = self.image_cv2.copy()
         cell_corner_image = copied_image[1 + CELL_DISTANCE * x:30 + CELL_DISTANCE * x,
-                                         1 + CELL_DISTANCE * y:36 + CELL_DISTANCE * y]
+                            1 + CELL_DISTANCE * y:36 + CELL_DISTANCE * y]
 
         # convert all non-pure-black pixels to white, since numbers in the image
         cell_corner_image[cell_corner_image != 0] = 255
 
         # adds a white border around the number, so that the number can be easily read by pytesseract
-        cell_corner_image = cv2.copyMakeBorder(cell_corner_image, 5, 5, 5, 5, cv2.BORDER_CONSTANT, value=[255, 255, 255])
+        cell_corner_image = cv2.copyMakeBorder(cell_corner_image, 5, 5, 5, 5, cv2.BORDER_CONSTANT,
+                                               value=[255, 255, 255])
 
         # converts the image to a string
         pytesseract.pytesseract.tesseract_cmd = PYTESSERACT_PATH
-        possible_cage_number = pytesseract.image_to_string(cell_corner_image, config='--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789')
+        possible_cage_number = pytesseract.image_to_string(cell_corner_image,
+                                                           config='--psm 10 --oem 3 -c tessedit_char_whitelist=0123456789')
 
         return possible_cage_number

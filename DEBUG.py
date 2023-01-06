@@ -29,8 +29,8 @@ def _create_debug_file():
     # if there are more than AMOUNT_LOG_FILES files in the DEBUG folder, delete the oldest one
     if files.__len__() >= AMOUNT_LOG_FILES:
         files.sort()
-        os.remove("debug/" + files[0])
-    return f"debug/debug_{_current_date()}.txt"
+        os.remove("DEBUG/" + files[0])
+    return f"DEBUG/debug_{_current_date()}.txt"
 
 
 # used to format the debug output
@@ -95,7 +95,7 @@ class DEBUG:
             y = position[1] - 1
 
             # copies the image so that the original image isn't changed
-            copied_image = cv2.imread("puzzle.png").copy()
+            copied_image = cv2.imread("DEBUG/puzzle.png").copy()
             cell_corner_image = copied_image[1 + CELL_DISTANCE * x:30 + CELL_DISTANCE * x,
                                              1 + CELL_DISTANCE * y:36 + CELL_DISTANCE * y]
 

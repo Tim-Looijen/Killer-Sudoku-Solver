@@ -14,3 +14,4 @@ import numpy as np
 import PIL
 import time
 from Combination import Combination
+import pyautogui
