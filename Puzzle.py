@@ -4,8 +4,9 @@ from Solver import Solver
 
 
 class Puzzle:
-    def __init__(self, cells, cages):
+    def __init__(self, cells, boxes, cages):
         self.cells = cells
+        self.boxes = boxes
         self.cages = cages
         self.combinations = []
         self.column_cages = self._add_column_cages()
@@ -38,7 +39,6 @@ class Puzzle:
 
     def add_combination(self, combination):
         self.combinations.append(combination)
-
     def solve(self):
         Solver(self)
         pass

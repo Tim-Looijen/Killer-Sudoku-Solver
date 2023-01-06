@@ -42,33 +42,43 @@ class Data:
     def fill_puzzle(self):
         DEBUG.print(Format.Function)
         cells = self.create_cells()
+        boxes = self.create_boxes(cells)
         cages = self.create_cages(cells)
         self.fill_cages(cells, cages)
         DEBUG.print(Format.Transition, 2, "initializing the puzzle...")
-        return Puzzle(cells, cages)
+        return Puzzle(cells, boxes, cages)
 
     # fills the cells list with dummy cells, only containing their position
-    def create_cells(self):
+    @staticmethod
+    def create_cells():
         DEBUG.print(Format.Function)
         cells = []
         column = 1
         row = 1
-        cell_x = CELL_SIZE
-        cell_y = CELL_SIZE
         for i in range(1, 82):
             cells.append(Cell((row, column)))
             DEBUG.print(Format.Info, 2, "added cell: %s" % cells[i - 1].__str__())
-            cell_x += CELL_DISTANCE
 
             # if the cell is in the last column, go to the next row
             if i % 9 == 0:
-                cell_y += CELL_DISTANCE
-                cell_x = 55
                 column = 0
                 row += 1
             column += 1
 
         DEBUG.print(Format.Transition, 1, "added %d cells" % cells.__len__())
+        return cells
+
+    # fills the boxes list with the dummy cells
+    @staticmethod
+    def create_boxes(cells):
+        DEBUG.print(Format.Function)
+        boxes = [[] for i in range(9)]
+        for cell in cells:
+            row, column = cell.position
+            box_index = (row - 1) // 3 + (column - 1) // 3 * 3
+            boxes[box_index].append(cell)
+            DEBUG.print(Format.Info, 2, "added %s to box index: %d" % (cell.__str__(), box_index))
+        DEBUG.print(Format.Transition, 1, "added and filled %d boxes" % boxes.__len__())
         return cells
 
     # loops through all cells and checks if a cage number is present in the cell, if so, it adds the number to the cage
@@ -81,7 +91,6 @@ class Data:
             # display the image to see why it cant read the cage number
             if cell.position == (4, 7):
                 DEBUG.show_image(cell.position)
-
 
             cell_number_list = re.findall('[0-9]+', self._read_cage_number(cell.position))
             if cell_number_list.__len__() != 0:

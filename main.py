@@ -14,9 +14,6 @@ def main(start_time):
     DEBUG.print(Format.Info, 2, "created %d cages" % puzzle.cages.__len__())
     for cage in puzzle.cages:
         DEBUG.print(Format.Info, 2, cage.__str__())
-    for cell, combination in puzzle.combinations:
-        DEBUG.print(Format.Info, 2, f"{combination.__str__()} for {cell.__str__()}")
-
     # solve the puzzle
     puzzle.solve()
     pass

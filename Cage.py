@@ -10,15 +10,21 @@ class Cage:
         self.cells = []
         self.sum = number
         self.color = color
-        self.size = self.cells.__len__()
+        self.size = 0
+        self.certain_values = []
 
     def __str__(self):
         cells = ',\n'.join(cell.__str__() for cell in self.cells)
         return f"cage: {self.id} " \
-               f"number: {self.sum} " \
+               f"sum: {self.sum} " \
                f"color: {self.color} " \
+               f"size: {self.size} " \
                f"\n{cells}"
 
     def add_cell(self, cell):
         cell.cage_id = self.id
         self.cells.append(cell)
+        self.size += 1
+
+    def add_certain_values(self, values):
+        self.certain_values = values

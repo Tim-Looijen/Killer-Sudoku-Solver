@@ -62,7 +62,7 @@ class DEBUG:
         if debug_level <= GLOBAL_DEBUG_LEVEL or debug_level == 0:
             f = open(current_file, "a")
             # makes sure that any fancy debug output is only printed if the debug_level is high enough
-            if _format == Format.Info or debug_level <= 1:
+            if _format == Format.Info or GLOBAL_DEBUG_LEVEL <= 1:
                 f.write(_current_time() + ": " + debug + "\n")
                 logging.debug(debug)
                 f.close()
@@ -87,6 +87,7 @@ class DEBUG:
                 f.close()
                 return
 
+    # shows the cell corner at the specified position, so that I can see why a cell's number is not being read
     @staticmethod
     def show_image(position):
         if DEBUG_IMAGE:
