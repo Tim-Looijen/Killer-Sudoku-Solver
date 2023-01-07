@@ -11,22 +11,20 @@ class Export:
         self.cells = puzzle.cells
         # used to check if the Noted mode on the phone is enabled
         self.Notes = False
+        self.export()
 
     def export(self):
         DEBUG.print(Format.Function)
         self._enable_notes()
-        self._export_combinations()
-        self._export_values()
+        #self._export_values()
 
     def _enable_notes(self):
         DEBUG.print(Format.Function)
         # check if the Noted mode on the phone is enabled
         if not self.Notes:
-            # if not, enable it
-
-            # get the coordinates on the Notes button and store it in constants.py
-
-            # store the Notes.png file in a variable in constants.py so that there is no need to load it every time
-
-            Notes = pyautogui.locateOnScreen('images/Notes.png')
+            self._tab(NOTES_BUTTON)
             self.Notes = True
+    @staticmethod
+    def _tab(cord):
+        x, y = cord
+        subprocess.call([ADB_PATH, "shell", "input", "tap", x.__str__(), y.__str__()])

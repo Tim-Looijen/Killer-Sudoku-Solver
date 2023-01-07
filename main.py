@@ -2,6 +2,7 @@ from global_imports import *
 from DEBUG import DEBUG, Format
 from Data import Data
 from Solver import Solver
+from Export import Export
 
 
 def main(start_time):
@@ -16,6 +17,7 @@ def main(start_time):
         DEBUG.print(Format.Info, 2, cage.__str__())
     # solve the puzzle
     puzzle.solve()
+    Export(puzzle)
     pass
 
 

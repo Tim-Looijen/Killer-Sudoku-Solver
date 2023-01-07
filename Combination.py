@@ -11,7 +11,7 @@ class Combination:
 
     def __str__(self):
         return f"combination: {self.possible_values} " \
-               f"sum: {self.sum}" \
+               f"sum: {self.sum} " \
                f"cells: \n{[cell.__str__() for cell in self.cells]}"
 
     # check if all cells in the combination are on the same line

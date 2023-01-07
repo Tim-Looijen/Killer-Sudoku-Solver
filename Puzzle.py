@@ -38,6 +38,7 @@ class Puzzle:
         return rows
 
     def add_combination(self, combination):
+        [cell.add_possible_values(combination.possible_values) for cell in combination.cells]
         self.combinations.append(combination)
     def solve(self):
         Solver(self)

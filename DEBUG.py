@@ -95,7 +95,7 @@ class DEBUG:
             y = position[1] - 1
 
             # copies the image so that the original image isn't changed
-            copied_image = cv2.imread("DEBUG/puzzle.png").copy()
+            copied_image = cv2.imread("temp/puzzle.png").copy()
             cell_corner_image = copied_image[1 + CELL_DISTANCE * x:30 + CELL_DISTANCE * x,
                                              1 + CELL_DISTANCE * y:36 + CELL_DISTANCE * y]
 

@@ -10,7 +10,7 @@ class Data:
         DEBUG.print(Format.Info, 0, "connected to phone")
         self.image_cv2 = self.create_puzzle_image()
         # saves the screenshot to a file for debugging purposes
-        cv2.imwrite("DEBUG/puzzle.png", self.image_cv2)
+        cv2.imwrite("temp/puzzle.png", self.image_cv2)
         DEBUG.print(Format.Info, 0, "created puzzle image")
 
     # connects to the phone and returns the device
@@ -34,7 +34,7 @@ class Data:
         _screenshot = self.device.screencap()
 
         # saves the screenshot to a file for debugging purposes
-        with open("DEBUG/phone_screen.png", "wb") as f:
+        with open("temp/phone_screen.png", "wb") as f:
             f.write(_screenshot)
 
         # convert image to numpy array
