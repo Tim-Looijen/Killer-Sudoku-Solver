@@ -1,0 +1,6 @@
+numpy==1.23.3
+opencv_python==4.5.5.62
+Pillow==9.4.0
+pure_python_adb==0.3.0.dev0
+pyautogui==0.9.53
+pytesseract==0.3.10
