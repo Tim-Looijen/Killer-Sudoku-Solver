@@ -97,7 +97,7 @@ class DEBUG:
             # copies the image so that the original image isn't changed
             copied_image = cv2.imread("temp/puzzle.png").copy()
             cell_corner_image = copied_image[1 + CELL_DISTANCE * x:30 + CELL_DISTANCE * x,
-                                             1 + CELL_DISTANCE * y:36 + CELL_DISTANCE * y]
+                                             5 + CELL_DISTANCE * y:36 + CELL_DISTANCE * y]
 
             # convert all non-pure-black pixels to white, since numbers in the image
             cell_corner_image[cell_corner_image != 0] = 255

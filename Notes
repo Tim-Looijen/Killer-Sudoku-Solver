@@ -1,11 +1,38 @@
+all cells have their connected combinations
+single sized cages will affect:
+its row
+its column
+its box
+these are all queranteed and can be extracted from the cell itself
+
+get all of the affected combinations
+if it is and all affected cells are also affected by the single value cell:
+recalculate the combination based on the single value cell
+
+if the combination size is 2:
+
+the combination needs to be split into two combinations
+the original combination needs to be removed from both cells
+the other value then the single value cell must be removed from the affected cell
+the single value cell must remain in the other cell
+
+add a new combination to the affected cell without the value of the cell
 
 
-taking a small break from algoritmes to implement a way to export combinations and values to the phone
-
-time for the algoritmes themselves.
+remeber the combination because its combination is still valid for the other cells
 
 
 
-we must first do the basic ones, such as the cage fills entire row, column, 3x3 grid but 1 or multiple cells.
-and then another basic one such as the cage combinations based on amount of cells and the sum of the cage.
-and then one which combines the 2, so that the cage combinations are based on the cells which have quaranteed possible numbers in them.
+
+double sized combinations will affect:
+its (possible) row
+its (possible) column
+its (possible) box
+each of these conditions must be queranteed
+
+if a single value is present in every combination of a cell:
+
+
+
+then branch is done imo
+then advanced stuff needs to be done :D

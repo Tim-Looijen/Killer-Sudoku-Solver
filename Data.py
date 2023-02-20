@@ -48,11 +48,10 @@ class Data:
     def fill_puzzle(self):
         DEBUG.print(Format.Function)
         cells = self.create_cells()
-        boxes = self.create_boxes(cells)
         cages = self.create_cages(cells)
         self.fill_cages(cells, cages)
         DEBUG.print(Format.Transition, 2, "initializing the puzzle...")
-        return Puzzle(cells, boxes, cages)
+        return Puzzle(cells, cages)
 
     # fills the cells list with dummy cells, only containing their position
     @staticmethod
@@ -74,19 +73,6 @@ class Data:
         DEBUG.print(Format.Transition, 1, "added %d cells" % cells.__len__())
         return cells
 
-    # fills the boxes list with the dummy cells
-    @staticmethod
-    def create_boxes(cells):
-        DEBUG.print(Format.Function)
-        boxes = [[] for i in range(9)]
-        for cell in cells:
-            row, column = cell.position
-            box_index = (row - 1) // 3 + (column - 1) // 3 * 3
-            boxes[box_index].append(cell)
-            DEBUG.print(Format.Info, 2, "added %s to box index: %d" % (cell.__str__(), box_index))
-        DEBUG.print(Format.Transition, 1, "added and filled %d boxes" % boxes.__len__())
-        return cells
-
     # loops through all cells and checks if a cage number is present in the cell, if so, it adds the number to the cage
     def create_cages(self, cells):
         DEBUG.print(Format.Function)
@@ -95,7 +81,7 @@ class Data:
         for cell in cells:
 
             # display the image to see why it cant read the cage number
-            if cell.position == (4, 7):
+            if cell.position == (1, 2):
                 DEBUG.show_image(cell.position)
 
             cell_number_list = re.findall('[0-9]+', self._read_cage_number(cell.position))
@@ -160,7 +146,7 @@ class Data:
         # copies the image so that the original image isn't changed
         copied_image = self.image_cv2.copy()
         cell_corner_image = copied_image[1 + CELL_DISTANCE * x:30 + CELL_DISTANCE * x,
-                            1 + CELL_DISTANCE * y:36 + CELL_DISTANCE * y]
+                                         5 + CELL_DISTANCE * y:36 + CELL_DISTANCE * y]
 
         # convert all non-pure-black pixels to white, since numbers in the image
         cell_corner_image[cell_corner_image != 0] = 255

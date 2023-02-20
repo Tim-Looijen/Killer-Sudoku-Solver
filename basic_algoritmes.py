@@ -5,7 +5,8 @@ from global_imports import *
 def add_cages_combinations(puzzle):
     DEBUG.print(Format.Function)
     for cage in puzzle.cages:
-        if _single_cage_size(cage):
+        if cage.size == 1:
+            cage.cells[0].value = cage.sum
             continue
         DEBUG.print(Format.Function)
         DEBUG.print(Format.Info, 1, f"filling cage {cage.id} with combinations...")
@@ -15,11 +16,13 @@ def add_cages_combinations(puzzle):
         _sum = cage.sum
         size = cage.size
 
-        # create combinations based on sum and size and NUMBERS
-        for combination in itertools.combinations_with_replacement(NUMBERS, size):
-            combination = Combination(cage.cells, combination)
+        # create combinations based on sum, size and NUMBERS
+        for possible_values in itertools.combinations_with_replacement(NUMBERS, size):
+            possible_values = list(possible_values)
+            combination = Combination(cage.cells, possible_values)
+            # check if the combination is valid based on the killer sudoku rules and if it is not already in the cage
             if combination.sum == _sum \
-                    and (combination not in puzzle.combinations)  \
+                    and combination not in cage_combinations \
                     and set(combination.possible_values).__len__() == size:
                 cage_combinations.append(combination)
                 puzzle.add_combination(combination)
@@ -28,15 +31,4 @@ def add_cages_combinations(puzzle):
     DEBUG.print(Format.Transition, 2, f"added all possible combinations for each cage")
 
 
-def _single_cage_size(cage):
-    if cage.size == 1:
-        cage.cells[0].add_value(cage.sum)
-        return True
-
-
-# checks if the same value(s) are/is present in all the cage_combinations
-def add_certain_values(cage, cage_combinations):
-    DEBUG.print(Format.Function)
-    pass
-
-
+# ----------------------------------------Single value cells algorithm--------------------------------------------------

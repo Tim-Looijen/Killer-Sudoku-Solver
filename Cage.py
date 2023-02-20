@@ -12,6 +12,8 @@ class Cage:
         self.color = color
         self.size = 0
         self.certain_values = []
+        self.row = -1
+        self.column = -1
 
     def __str__(self):
         cells = ',\n'.join(cell.__str__() for cell in self.cells)
