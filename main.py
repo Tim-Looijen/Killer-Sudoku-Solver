@@ -5,18 +5,19 @@ from Solver import Solver
 from Export import Export
 
 
-def main(start_time):
+def main():
 
     # create a new puzzle based on a single screenshot from a connected phone
-    puzzle = Data().fill_puzzle()
+    puzzle = Data().puzzle
 
     # solve the puzzle
     Solver(puzzle)
+
+    # export the cells possible values to the phone
     Export(puzzle)
     pass
 
 
 if __name__ == "__main__":
-    start_time = time.time()
-    main(start_time)
+    main()
 
