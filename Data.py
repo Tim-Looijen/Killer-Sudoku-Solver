@@ -7,25 +7,21 @@ from Puzzle import Puzzle
 class Data:
     def __init__(self):
         self.device = self.connect_phone()
-        DEBUG.print(Format.Info, 0, "connected to phone")
         self.image_cv2 = self.create_puzzle_image()
         # saves the screenshot to a file for debugging purposes
         cv2.imwrite("temp/puzzle.png", self.image_cv2)
-        DEBUG.print(Format.Info, 0, "created puzzle image")
+        self.puzzle = self.fill_puzzle()
 
     # connects to the phone and returns the device
     @staticmethod
     def connect_phone():
-        DEBUG.print(Format.Function)
-        DEBUG.print(Format.Info, 0, "connecting to phone...")
-        _adb_server_path = "C:/Users/tim/Desktop/Programming/Python/Programs/Killer_Sudoku_New/scrcpy-win64-v1.24"
-        subprocess.check_output("adb start-server", cwd=_adb_server_path, shell=True)
+        _adb_folder_path = "scrcpy-win64-v1.24"
+        subprocess.check_output("adb start-server", cwd=_adb_folder_path, shell=True)
         client = AdbClient(host="127.0.0.1", port=5037)
         try:
             device = client.device(client.devices()[0].serial)
             return device
         except:
-            DEBUG.print(Format.Error, debug="no phone connected")
             sys.exit()
 
     # get screenshot from phone
@@ -50,7 +46,6 @@ class Data:
         cells = self.create_cells()
         cages = self.create_cages(cells)
         self.fill_cages(cells, cages)
-        DEBUG.print(Format.Transition, 2, "initializing the puzzle...")
         return Puzzle(cells, cages)
 
     # fills the cells list with dummy cells, only containing their position
@@ -62,7 +57,6 @@ class Data:
         row = 1
         for i in range(1, 82):
             cells.append(Cell((row, column)))
-            DEBUG.print(Format.Info, 2, "added cell: %s" % cells[i - 1].__str__())
 
             # if the cell is in the last column, go to the next row
             if i % 9 == 0:
@@ -70,13 +64,10 @@ class Data:
                 row += 1
             column += 1
 
-        DEBUG.print(Format.Transition, 1, "added %d cells" % cells.__len__())
         return cells
 
     # loops through all cells and checks if a cage number is present in the cell, if so, it adds the number to the cage
     def create_cages(self, cells):
-        DEBUG.print(Format.Function)
-        DEBUG.print(Format.Info, 1, "adding cages...")
         cages = []
         for cell in cells:
 
@@ -91,19 +82,13 @@ class Data:
                 cage = Cage(cage_number, cage_color)
                 cage.add_cell(cell)
                 cages.append(cage)
-                DEBUG.print(Format.Info, 2, f"added: {cage.__str__()}")
-        DEBUG.print(Format.Transition, 1, "added %d cages" % cages.__len__())
         return cages
 
     def fill_cages(self, cells, cages):
-        DEBUG.print(Format.Function)
-        DEBUG.print(Format.Info, 1, "filling cages...")
         cells_to_check = cells.copy()
         for i in range(0, cells_to_check.__len__()):
             if cells[i].cage_id != -1:
-                DEBUG.print(Format.Info, 2, f"removed: {cells[i].__str__()} from cells_to_check")
                 cells_to_check.remove(cells[i])
-        DEBUG.print(Format.Transition, 2, f"cells removed: {cells.__len__() - cells_to_check.__len__()}")
         # checks if a cell from the cells list is adjacent to any cell in the cage and has the same cage color
         while cells_to_check.__len__() != 0:
             # raises an exception so that when a cell is removed from the list, the loop doesn't skip a cell
@@ -120,8 +105,7 @@ class Data:
                                 cells_to_check.remove(cell)
                                 raise StopIteration(cell)
             except StopIteration as cell:
-                DEBUG.print(Format.Info, 2, f"added {cell.__str__()}")
-        DEBUG.print(Format.Transition, 0, "filled cages")
+                pass
         return cages
 
     def _cell_color(self, position):

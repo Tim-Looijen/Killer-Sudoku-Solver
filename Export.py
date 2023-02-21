@@ -15,15 +15,12 @@ class Export:
         self.export()
 
     def export(self):
-        DEBUG.print(Format.Function)
         self._enable_notes()
         for cell in self.cells:
             self._select_cell(cell)
             self._export_values(cell)
-            time.sleep(0.1)
 
     def _enable_notes(self):
-        DEBUG.print(Format.Function)
         # check if the Notes mode is enabled
         if not self.Notes:
             self._tab(NOTES_BUTTON)
@@ -33,6 +30,7 @@ class Export:
     def _tab(cord):
         x, y = cord
         subprocess.call([ADB_PATH, "shell", "input", "tap", x.__str__(), y.__str__()])
+
     @staticmethod
     def _select_cell(cell):
         DEBUG.print(Format.Function)
