@@ -22,7 +22,6 @@ class Cell:
     def add_value(self, value):
         self.possible_values = set()
         self.value = value
-        DEBUG.print(Format.Info, 2, f"added the value {value} to {self.__str__()}")
 
     def add_combination(self, combination):
         if combination not in self.combinations:

@@ -14,6 +14,7 @@ def main():
     Solver(puzzle)
 
     # export the cells possible values to the phone
+    puzzle.save_state('test')
     Export(puzzle)
     pass
 

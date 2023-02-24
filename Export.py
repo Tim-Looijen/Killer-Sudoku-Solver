@@ -8,7 +8,6 @@ class Export:
 
     def __init__(self, puzzle):
         self.puzzle = puzzle
-        self.combinations = puzzle.combinations
         self.cells = puzzle.cells
         # used to check if the Noted mode on the phone is enabled
         self.Notes = False
@@ -33,7 +32,6 @@ class Export:
 
     @staticmethod
     def _select_cell(cell):
-        DEBUG.print(Format.Function)
         position = cell.position
         x = (position[1] - 1) * CELL_DISTANCE + CELL_SIZE + 20
         y = (position[0] - 1) * CELL_DISTANCE + CELL_SIZE + 417
@@ -41,7 +39,6 @@ class Export:
 
     @staticmethod
     def _export_values(cell):
-        DEBUG.print(Format.Function)
         if cell.value != 0:
             subprocess.call([ADB_PATH, "shell", "input", "text", cell.value.__str__()])
         else:

@@ -1,2 +1,5 @@
-need to  put a file name when debugging, so that for example all cages are saved in PUZZLE_INFO/CAGES.txt.
-needs to be saved the same way as DEBUG currently, so make a new folder when applicable, and only save last 5 runs.
+we need te redo/upgrade the debugging.
+to do this we could save the data in specified folders, such as one for cells and one for cages.
+perhaps use the dataframe as a file format.
+
+make new debug methods for each specific data type we want to store; cell with combination or cell and combination, cage, etc

@@ -7,6 +7,7 @@ from Puzzle import Puzzle
 class Data:
     def __init__(self):
         self.device = self.connect_phone()
+        self.move_selection()
         self.image_cv2 = self.create_puzzle_image()
         # saves the screenshot to a file for debugging purposes
         cv2.imwrite("temp/puzzle.png", self.image_cv2)
@@ -23,6 +24,13 @@ class Data:
             return device
         except:
             sys.exit()
+
+    # moves the selected blue square out of the way
+    @staticmethod
+    def move_selection():
+        x = (BOTTOM_LEFT_CELL[1] - 1) * CELL_DISTANCE + CELL_SIZE + 20
+        y = (BOTTOM_LEFT_CELL[0] - 1) * CELL_DISTANCE + CELL_SIZE + 417
+        subprocess.call([ADB_PATH, "shell", "input", "tap", x.__str__(), y.__str__()])
 
     # get screenshot from phone
     def create_puzzle_image(self):
@@ -72,7 +80,7 @@ class Data:
         for cell in cells:
 
             # display the image to see why it cant read the cage number
-            if cell.position == (1, 2):
+            if cell.position == (2, 1):
                 DEBUG.show_image(cell.position)
 
             cell_number_list = re.findall('[0-9]+', self._read_cage_number(cell.position))
@@ -122,10 +130,12 @@ class Data:
         return False
 
     def _read_cage_number(self, position):
-
         # -1 because the row and column start at 1
         x = position[0] - 1
         y = position[1] - 1
+
+
+
 
         # copies the image so that the original image isn't changed
         copied_image = self.image_cv2.copy()
